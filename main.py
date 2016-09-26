@@ -1,10 +1,25 @@
 class ContactList(list):
-    pass
+
+    def search(self, string):
+        match = []
+        for i in self:
+            if string in i.name:
+                match.append(string)
+        return match
+
+
+    def longest_name(self):
+        longest = ""
+        for contact in self:
+            if len(contact.name) > len(longest):
+                longest = contact.name
+        if longest:
+            return longest
 
 
 class Contact:
 
-    all_contacts = []
+    all_contacts = ContactList()
 
     def __init__(self, name, email):
         self.name = name
@@ -31,9 +46,9 @@ class Supplier(Contact):
         return Supplier.all_orders
 
 
-x = Supplier('snfac','a@bb.com')
-x.order('cat')
-print(x.all_orders)
+# x = Supplier('snfac','a@bb.com')
+# x.order('cat')
+# print(x.all_orders)
 
 
 # x=Contact('d','a')
